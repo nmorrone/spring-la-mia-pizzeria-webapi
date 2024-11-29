@@ -28,8 +28,7 @@ public class PizzeRestController {
 	@GetMapping
 	public ResponseEntity <List<Pizza>> index(@RequestParam(name = "keyword", required = false) String keyword){
 		
-		List <Pizza> lista;
-		if(keyword != null && !keyword.isBlank()) {
+			if(keyword != null && !keyword.isBlank()) {
 			return new ResponseEntity<List<Pizza>>(pizzeRepo.findByNomePizzaOrDescrizioneContaining(keyword, keyword), HttpStatus.OK);
 		}
 		else {
