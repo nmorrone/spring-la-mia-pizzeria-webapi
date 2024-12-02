@@ -54,14 +54,46 @@ public class PizzeRestController {
 		}
 	}
 	
-	//API Metodo UPDATE Pizza
+	//API Metodo UPDATE PREZZO Pizza 
 	@PutMapping("{id}")
-	public ResponseEntity <Pizza> updatePizza(@PathVariable Integer id, @RequestBody Pizza pizza){
+	public ResponseEntity <Pizza> updatePrezzoPizza(@PathVariable Integer id, @RequestBody Pizza pizza){
 		
 		try {
 			Optional <Pizza> pizzaById = pizzeRepo.findById(id);
 			Pizza modifichePizza = pizzaById.get();
 			modifichePizza.setPrezzo(pizza.getPrezzo());
+			pizzeRepo.save(modifichePizza);
+			return ResponseEntity.ok(modifichePizza);
+			
+		}
+		catch(Exception e){}
+		return ResponseEntity.notFound().build();
+	}
+	
+	//API Metodo UPDATE NOME Pizza
+	@PutMapping("/nome/{id}")
+	public ResponseEntity <Pizza> updateNomePizza(@PathVariable Integer id, @RequestBody Pizza pizza){
+		
+		try {
+			Optional <Pizza> pizzaById = pizzeRepo.findById(id);
+			Pizza modifichePizza = pizzaById.get();
+			modifichePizza.setNomePizza(pizza.getNomePizza());
+			pizzeRepo.save(modifichePizza);
+			return ResponseEntity.ok(modifichePizza);
+			
+		}
+		catch(Exception e){}
+		return ResponseEntity.notFound().build();
+	}
+	
+	//API Metodo UPDATE DESCRIZIONE Pizza
+	@PutMapping("/descrizione/{id}")
+	public ResponseEntity <Pizza> updateDescrizionePizza(@PathVariable Integer id, @RequestBody Pizza pizza){
+		
+		try {
+			Optional <Pizza> pizzaById = pizzeRepo.findById(id);
+			Pizza modifichePizza = pizzaById.get();
+			modifichePizza.setDescrizione(pizza.getDescrizione());
 			pizzeRepo.save(modifichePizza);
 			return ResponseEntity.ok(modifichePizza);
 			
